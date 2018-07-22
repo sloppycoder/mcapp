@@ -22,7 +22,7 @@
     "postinstall": "rndebugger-open"
   },
   "lint-staged": {
-    "**/*.{js,jsx,json,scss}": [
+    "app/**/*.{js,jsx,json,scss}": [
       "prettier --write",
       "git add"
     ]
