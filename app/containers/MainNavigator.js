@@ -10,6 +10,7 @@ import WorkListScreen from './WorkListScreen';
 import SettingsScreen from './SettingsScreen';
 import LoginScreen from './LoginScreen';
 import AuthLoadingScreen from './AuthLoadingScreen';
+import FingerPrintScreen from './FingerPrintScreen';
 
 const WorkListNavigator = createStackNavigator({
   WorkList: WorkListScreen
@@ -58,7 +59,8 @@ export default createSwitchNavigator(
   {
     AuthLoading: AuthLoadingScreen,
     Auth: AuthNavigator,
-    App: AppNavigator
+    App: AppNavigator,
+    FingerPrint: FingerPrintScreen
   },
   {
     initialRouteName: 'AuthLoading'
