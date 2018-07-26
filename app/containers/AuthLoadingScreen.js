@@ -7,7 +7,8 @@ import {
   View,
   Image,
   Text,
-  Alert
+  Alert,
+  Platform
 } from 'react-native';
 
 class AuthLoadingScreen extends React.Component {
@@ -51,11 +52,22 @@ class AuthLoadingScreen extends React.Component {
     if (response.success) {
       this.props.navigation.navigate('App');
     } else {
-      Alert.alert(
-        'Authentication Failed',
-        'your finger print is not valid! try again',
-        [{ text: 'OK', onPress: () => this._loginWithFingerPrint() }]
-      );
+      if (Platform.OS === 'ios') {
+        this.props.navigation.navigate('Auth');
+      } else {
+        Alert.alert(
+          'Authentication Failed',
+          'your finger print is not valid! try again',
+          [
+            { text: 'OK', onPress: () => this._loginWithFingerPrint() },
+            {
+              text: 'Cancel',
+              onPress: () => this.props.navigation.navigate('Auth')
+            }
+          ],
+          { cancelable: false }
+        );
+      }
     }
   };
 
