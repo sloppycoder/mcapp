@@ -15,6 +15,11 @@ const PlayerStatus = {
 };
 
 class RecordingScreen extends React.Component {
+  static navigationOptions = () => {
+    return {
+      title: 'Record Audio'
+    };
+  };
   constructor(props) {
     super(props);
 
@@ -133,7 +138,6 @@ class RecordingScreen extends React.Component {
     } catch (error) {
       // Do nothing -- we are already unloaded.
     }
-    // const info = await FileSystem.getInfoAsync(this.recording.getURI());
     // Setup Player
     this._setUpPlayer();
   };
