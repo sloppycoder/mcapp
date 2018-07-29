@@ -1,6 +1,6 @@
 import React from 'react';
 import { Slider, Text, View } from 'react-native';
-import { Audio, FileSystem, Permissions } from 'expo';
+import { Audio, Permissions } from 'expo';
 
 import MediaButton from '../components/MediaButton';
 
