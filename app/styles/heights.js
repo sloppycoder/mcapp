@@ -15,7 +15,7 @@ const heightStyles = {
   h13: { height: 60 },
   h14: { height: 64 },
   h15: { height: 70 },
-  h16: { height: 80 },
+  h16: { height: 100 },
   h17: { height: 110 },
   h18: { height: 217 },
   h19: { height: 260 },

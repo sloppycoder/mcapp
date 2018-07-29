@@ -17,15 +17,15 @@ export default class MediaButton extends React.Component {
         <TouchableOpacity
           style={[
             styles.h16,
-            styles.w9,
-            styles.br8,
+            styles.w10,
+            styles.br9,
             styles.aic,
             styles.jcc,
             this.props.buttonStyles
           ]}
           onPress={this._onButtonPress}
         >
-          <Text style={[styles.tc, styles.normal, styles.f4, styles.white]}>
+          <Text style={[styles.tc, styles.normal, styles.f5, styles.white]}>
             {this.props.title}
           </Text>
         </TouchableOpacity>

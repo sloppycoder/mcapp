@@ -8,7 +8,7 @@ const borderStyles = {
   br6: { borderRadius: 20 },
   br7: { borderRadius: 30 },
   br8: { borderRadius: 40 },
-  br9: { borderRadius: 64 },
+  br9: { borderRadius: 50 },
   bs: { borderStyle: 'solid' },
   br0t: {
     borderTopLeftRadius: 0,
