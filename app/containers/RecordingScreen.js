@@ -23,7 +23,7 @@ class RecordingScreen extends React.Component {
     this.recordingSettings = JSON.parse(
       JSON.stringify(Audio.RECORDING_OPTIONS_PRESET_LOW_QUALITY)
     );
-    // this.recordingSettings.android['maxFileSize'] = 600000;
+
     this.state = {
       recorderStatus: PlayerStatus.PLAY,
       displayRecording: true,
@@ -41,7 +41,7 @@ class RecordingScreen extends React.Component {
 
   componentWillUnmount() {
     if (this.recording !== null) {
-      this._stopRecording();
+      // this._stopRecording();
       this.recording.setOnRecordingStatusUpdate(null);
       this.recording = null;
     }
@@ -253,7 +253,7 @@ class RecordingScreen extends React.Component {
     this._stopRecording();
   };
 
-  _getSeekSliderPosition() {
+  _updateSeekSliderPosition() {
     if (
       this.sound != null &&
       this.state.soundPosition != null &&
@@ -261,17 +261,26 @@ class RecordingScreen extends React.Component {
     ) {
       return this.state.soundPosition / this.state.soundDuration;
     }
+
     return 0;
   }
 
-  _onSeekSliderValueChange = value => {};
+  _onSliderValueChange = value => {};
 
-  _onSeekSliderSlidingComplete = async value => {};
+  _onSliderSlidingComplete = async value => {};
 
   render() {
     return (
       <View style={[styles.flx1, styles.bgWhite]}>
-        {this.state.recorderStatus == PlayerStatus.PLAY ? (
+        {!this.state.haveRecordingPermissions ? (
+          <View style={[styles.flx1, styles.aic, styles.jcc]}>
+            <Text style={[styles.tc, styles.normal, styles.f4]}>
+              {
+                'You must enable audio recording permissions in order to use this app.'
+              }
+            </Text>
+          </View>
+        ) : this.state.recorderStatus == PlayerStatus.PLAY ? (
           <MediaButton
             title={'Record'}
             styles={[styles.flx1, styles.aic, styles.jcc]}
@@ -281,7 +290,7 @@ class RecordingScreen extends React.Component {
         ) : (
           <View style={[styles.flx1]}>
             <View style={[styles.flx1, styles.flxc, styles.aic, styles.jcsa]}>
-              <Text style={[styles.tc, styles.b, styles.f1]}>
+              <Text style={[styles.tc, styles.b, styles.f2]}>
                 {this.state.displayRecording
                   ? this._getRecordingTimestamp()
                   : this._getPlaybackTimestamp()}
@@ -290,9 +299,9 @@ class RecordingScreen extends React.Component {
                 <Slider
                   style={{ width: '80%' }}
                   disabled={false}
-                  value={this._getSeekSliderPosition()}
-                  onValueChange={this._onSeekSliderValueChange}
-                  onSlidingComplete={this._onSeekSliderSlidingComplete}
+                  value={this._updateSeekSliderPosition()}
+                  onValueChange={this._onSliderValueChange}
+                  onSlidingComplete={this._onSliderSlidingComplete}
                 />
               ) : null}
             </View>
