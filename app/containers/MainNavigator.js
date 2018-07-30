@@ -56,9 +56,13 @@ const AppNavigator = createBottomTabNavigator({
 
 const AuthNavigator = createStackNavigator({ Login: LoginScreen });
 
+const AuthLoadingNavigator = createStackNavigator({
+  screen: AuthLoadingScreen
+});
+
 export default createSwitchNavigator(
   {
-    AuthLoading: AuthLoadingScreen,
+    AuthLoading: AuthLoadingNavigator,
     Auth: AuthNavigator,
     App: AppNavigator
   },
