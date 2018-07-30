@@ -7,12 +7,14 @@ import {
 } from 'react-navigation';
 import TabBarIcon from '../components/TabBarIcon';
 import WorkListScreen from './WorkListScreen';
+import RecordingScreen from './RecordingScreen';
 import SettingsScreen from './SettingsScreen';
 import LoginScreen from './LoginScreen';
 import AuthLoadingScreen from './AuthLoadingScreen';
 
 const WorkListNavigator = createStackNavigator({
-  WorkList: WorkListScreen
+  WorkList: WorkListScreen,
+  Recording: RecordingScreen
 });
 
 WorkListNavigator.navigationOptions = {
