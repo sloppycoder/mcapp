@@ -1,5 +1,6 @@
 import React from 'react';
 import { AsyncStorage, Button, StyleSheet, Text, View } from 'react-native';
+import { Constants } from 'expo';
 
 class SettingsScreen extends React.Component {
   _logoutAsync = async () => {
@@ -8,9 +9,10 @@ class SettingsScreen extends React.Component {
   };
 
   render() {
+    const { manifest } = Constants;
     return (
       <View style={styles.container}>
-        <Text>This is setttings screen</Text>
+        <Text>Expo SDK version {manifest.sdkVersion} </Text>
         <Button title="Logout" onPress={this._logoutAsync} />
       </View>
     );
