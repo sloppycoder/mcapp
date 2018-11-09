@@ -44,14 +44,12 @@ class RecordingScreen extends React.Component {
 
   audioRecordingOptions = () => {
     let android = Expo.Audio.RECORDING_OPTIONS_PRESET_LOW_QUALITY.android;
-    let ios = Expo.Audio.RECORDING_OPTIONS_PRESET_LOW_QUALITY.ios;
+    let ios = {}; // Expo.Audio.RECORDING_OPTIONS_PRESET_LOW_QUALITY.ios;
     console.log(ios);
 
-    ios.extension = '.mp4';
-    ios.bitRate = 32000;
+    ios.extension = '.caf';
     ios.numberOfChannels = 1;
-    ios.outputFormat = Expo.Audio.RECORDING_OPTION_IOS_OUTPUT_FORMAT_MPEG4AAC;
-    // ios.outputFormat = Expo.Audio.RECORDING_OPTION_IOS_OUTPUT_FORMAT_ILBC; 
+    ios.outputFormat = Expo.Audio.RECORDING_OPTION_IOS_OUTPUT_FORMAT_ILBC; 
     ios.audioQuality = Expo.Audio.RECORDING_OPTION_IOS_AUDIO_QUALITY_MIN;
     console.log(ios);
 
