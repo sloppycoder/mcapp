@@ -26,7 +26,9 @@ class RecordingScreen extends React.Component {
     this.recording = null;
     this.sound = null;
     this.recordingSettings = JSON.parse(
-      JSON.stringify(Audio.RECORDING_OPTIONS_PRESET_LOW_QUALITY)
+      JSON.stringify(
+        this.audioRecordingOptions()
+        ) 
     );
 
     this.state = {
@@ -39,6 +41,22 @@ class RecordingScreen extends React.Component {
       soundDuration: null
     };
   }
+
+  audioRecordingOptions = () => {
+    let android = Expo.Audio.RECORDING_OPTIONS_PRESET_LOW_QUALITY.android;
+    let ios = Expo.Audio.RECORDING_OPTIONS_PRESET_LOW_QUALITY.ios;
+    console.log(ios);
+
+    ios.extension = '.mp4';
+    ios.bitRate = 32000;
+    ios.numberOfChannels = 1;
+    ios.outputFormat = Expo.Audio.RECORDING_OPTION_IOS_OUTPUT_FORMAT_MPEG4AAC;
+    // ios.outputFormat = Expo.Audio.RECORDING_OPTION_IOS_OUTPUT_FORMAT_ILBC; 
+    ios.audioQuality = Expo.Audio.RECORDING_OPTION_IOS_AUDIO_QUALITY_MIN;
+    console.log(ios);
+
+    return { android, ios };
+  };
 
   componentDidMount() {
     this._askForPermissions();
@@ -138,6 +156,13 @@ class RecordingScreen extends React.Component {
     } catch (error) {
       // Do nothing -- we are already unloaded.
     }
+
+    // print recodring audio size
+    let audioFileInfo = await Expo.FileSystem.getInfoAsync(this.recording.getURI(), {
+      size: true
+    });
+    console.log(audioFileInfo);
+
     // Setup Player
     this._setUpPlayer();
   };
